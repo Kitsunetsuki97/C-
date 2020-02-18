@@ -1,0 +1,52 @@
+#include<iostream>
+#include<fstream>
+#include <string>
+#include <sstream>
+
+using namespace std;
+void readFile(ifstream &inputFile);
+int main()
+{
+	ifstream inputFile;
+    
+    inputFile.open("QuarterlySalesDataFile.txt");
+    if (!inputFile) {
+        cout << "Unable to open file";
+    }
+    else 
+	readFile(inputFile);//arguments
+	inputFile.close();
+    return 0;
+}
+void readFile(ifstream &inputFile)//parameters
+{
+
+  int iD=0,targetId=0;
+  int monthI=0, month[12]={0}, amntTotal=0;
+  float amountofSale=0.00, amnt=0, accountTotal=0;
+  float commissionRate=0.26;
+  string months[12]{"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
+  
+//targetId=iD;
+//cout << endl  <<iD<<"\t\t\t "<<monthI<<" "<<amountofSale<<"\n";
+
+  while (!inputFile.eof()) 
+{
+	inputFile >> iD >>monthI>>amountofSale;
+	cout << endl  <<iD<<"\t\t\t "<<monthI<<" "<<amountofSale<<"\n";
+if(targetId!=iD)
+    {
+    accountTotal+=amountofSale;
+	accountTotal=0;
+		
+    targetId=iD;
+    
+    }
+ 	
+ 		month[monthI - 1] += amountofSale;
+ 		amntTotal+= amountofSale;
+ 	}
+ 
+		
+ 		
+}
